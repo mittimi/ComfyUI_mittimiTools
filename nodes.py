@@ -7,8 +7,10 @@ import json
 
 
 class SaveLatentToInputFolderMittimi:
+
+    SEARCH_ALIASES = ["export latent"]
+
     def __init__(self):
-        #self.output_dir = folder_paths.get_output_directory()
         self.output_dir = folder_paths.get_input_directory()
 
     @classmethod
@@ -24,9 +26,8 @@ class SaveLatentToInputFolderMittimi:
 
     def saveLatentToInputFolderMittimi(self, samples=None, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
 
-        if samples is None: 
+        if samples is None:
             return()
-            
 
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir)
 
@@ -42,7 +43,7 @@ class SaveLatentToInputFolderMittimi:
                 for x in extra_pnginfo:
                     metadata[x] = json.dumps(extra_pnginfo[x])
 
-        file = f"{filename}_{counter:05}.latent"
+        file = f"{filename}_{counter:05}_.latent"
 
         results: list[FileLocator] = []
         results.append({
@@ -59,6 +60,8 @@ class SaveLatentToInputFolderMittimi:
 
         comfy.utils.save_torch_file(output, file, metadata=metadata)
         return { "ui": { "latents": results } }
+
+
 
 
 
