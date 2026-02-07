@@ -1,0 +1,14 @@
+[project]
+name = "comfyui_mittimi_tools"
+description = "some tools."
+version = "1.0.0"
+license = { file = "LICENSE" }
+
+[project.urls]
+Repository = "https://github.com/mittimi/ComfyUI_mittimiTools"
+
+[tool.comfy]
+PublisherId = "mittimi"
+DisplayName = "ComfyUI_mittimiTools"
+Icon = ""
+
